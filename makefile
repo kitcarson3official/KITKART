@@ -9,7 +9,7 @@ clean:
 	rm -f $(OUTPUT)
 
 compile:
-	$(CC) $(CFLAGS) SRC/*.cpp LIB/*.cpp $(LDFLAGS) -o $(OUTPUT)
+	$(CC) $(CFLAGS) SRC/*.cpp libkk/*.cpp $(LDFLAGS) -o $(OUTPUT)
 
 run:
 	./$(OUTPUT)
