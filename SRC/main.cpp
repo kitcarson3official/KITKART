@@ -1,7 +1,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "../LIB/car.h"
+#include "../libkk/car.h"
 
 #include "kart.h"
 
