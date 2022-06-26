@@ -45,7 +45,7 @@ int main()
         sf::Time time = clock.getElapsedTime();
         clock.restart();
         
-        kart.update( time.asSeconds(), 0.1f);
+        kart.update( time.asSeconds(), 0.01f);
 
         info_str = "x:" + std::to_string( kart.get_pos().x ) + 
                    " y:" + std::to_string( kart.get_pos().y );
