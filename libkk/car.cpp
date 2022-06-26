@@ -1,14 +1,16 @@
+#include <assert.h>
 #include "car.h"
 
 namespace KK {
-Car::Car(float x0, float y0) {
-  pos.x = x0;
-  pos.y = y0;
+Car::Car(Point pos, Point dir) {
+  this->pos = pos;
+  this->direction_acc = normalize(dir);
+
+  assert(point_module(direction_acc)!=0.f);
 
   vel.x = 0.0f;
   vel.x = 0.0f;
-
-  direction_acc = {1.f, 0.f};
+  
   module_acc = 0.0f;
 
   // some precomputed stuff
@@ -17,14 +19,14 @@ Car::Car(float x0, float y0) {
   // on the screen it becomes pixels/second so that it becomes needed
   // a conversion rate of pixels/meter
   
-  const float PIXELS_PER_METER = 30.f;
+#define PIXELS_PER_METER 30.f
   
   // the max velocity is suck that 
   //                  acc - k * vel_max = 0
   // so
   //                       vel/max = acc/k 
 
-  const float MAX_VELOCITY = 250.f; // m/s
+#define MAX_VELOCITY 250.f // m/s
                                     
   // k means how much of velocity it's subtracted form itself
   // greater the k, slower the velocity reaches its maximum value
@@ -46,22 +48,26 @@ void KK::Car::rest() { module_acc = 0.f; }
 
 void KK::Car::turn_right() {
   KK::Point vel_norm = normalize(vel);
-  direction_acc.x = vel_norm.y;
-  direction_acc.y = vel_norm.x;
+  direction_acc.x = -vel_norm.y;
+  direction_acc.y = +vel_norm.x;
 }
 
 void KK::Car::turn_left() {
   KK::Point vel_norm = normalize(vel);
-  direction_acc.x = +module_acc * vel_norm.y;
-  direction_acc.y = -module_acc * vel_norm.x;
+  direction_acc.x = +vel_norm.y;
+  direction_acc.y = -vel_norm.x;
 }
 
 void KK::Car::go_straight() {
   KK::Point vel_norm = normalize(vel);
-  direction_acc.x += +module_acc * vel_norm.x;
-  direction_acc.y += +module_acc * vel_norm.y;
+  direction_acc.x += vel_norm.x;
+  direction_acc.y += vel_norm.y;
 }
 
 KK::Point KK::Car::get_pos() { return pos; }
+
+KK::Point KK::Car::get_acc() { return direction_acc * module_acc; }
+
+KK::Point KK::Car::get_vel() { return vel; }
 
 } // namespace KK

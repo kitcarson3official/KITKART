@@ -7,6 +7,8 @@ namespace KK {
 struct Point {
   float x;
   float y;
+
+  std::string to_string();
 };
 
 /**

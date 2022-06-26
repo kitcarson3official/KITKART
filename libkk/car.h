@@ -14,7 +14,7 @@ class Car {
   float module_acc;
 
 public:
-  Car(float x0, float y0);
+  Car(Point pos, Point dir);
   void move(float t, float k);
   void accelerate();
   void rest();
@@ -22,6 +22,8 @@ public:
   void turn_left();
   void go_straight();
   Point get_pos();
+  Point get_acc();
+  Point get_vel();
 };
 
 } // namespace KK

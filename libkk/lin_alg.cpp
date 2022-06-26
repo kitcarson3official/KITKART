@@ -1,8 +1,15 @@
 #include <math.h>
 #include <assert.h>
+#include <string>
 #include "lin_alg.h"
 
 namespace KK {
+
+std::string Point::to_string()
+{
+  return "x:" + std::to_string(x) + " y:" + std::to_string(y);
+}
+
 float point_module(const Point x) { return sqrt(x.x * x.x + x.y * x.y); }
 
 Point normalize(const Point x) {
