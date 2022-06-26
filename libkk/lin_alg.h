@@ -25,10 +25,14 @@ KK::Point normalize(const KK::Point x);
 Point operator+(const Point &p1, const Point &p2);
 Point operator-(const Point &p1, const Point &p2);
 float operator*(const Point &p1, const Point &p2);
-Point operator+(const Point &p, float a);
-Point operator-(const Point &p, float a);
-Point operator*(const Point &p, float a);
-Point operator/(const Point &p, float a);
+Point operator+(const Point &p, const float a);
+Point operator-(const Point &p, const float a);
+Point operator*(const Point &p, const float a);
+Point operator/(const Point &p, const float a);
+Point operator+(const float a, const Point &p);
+Point operator-(const float a, const Point &p);
+Point operator*(const float a, const Point &p);
+Point operator/(const float a, const Point &p);
 std::ostream& operator<<(std::ostream& os, const Point &p);
 }
 #endif

@@ -29,6 +29,13 @@ Point operator/(const Point p, float a) {
   assert(a != 0.f);
   return {p.x / a, p.y / a};
 }
+Point operator+(const float a, const Point &p) { return {p.x + a, p.y + a}; }
+Point operator-(const float a, const Point &p) { return {p.x - a, p.y - a}; }
+Point operator*(const float a, const Point &p) { return {p.x * a, p.y * a}; }
+Point operator/(const float a, const Point &p) {
+  assert(a != 0.f);
+  return {p.x / a, p.y / a};
+}
 std::ostream &operator<<(std::ostream &os, const Point &p) {
   os << "{" << p.x << ", " << p.y << "}";
   return os;
