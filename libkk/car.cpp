@@ -82,11 +82,11 @@ void KK::Car::decelerate() { acc = -100.f; }
 void KK::Car::rest() { acc = 0.f; }
 
 void KK::Car::turn_right() {
-  steer = -M_PIf/2;
+  steer = -M_PIf/4;
 }
 
 void KK::Car::turn_left() {
-  steer = M_PIf/2;
+  steer = M_PIf/4;
 }
 
 void KK::Car::go_straight() {
