@@ -6,22 +6,24 @@
 namespace KK {
 class Car {
   // car state
-  Point pos;
-  Point vel;
-
-  // car acceleration
-  Point direction_acc;
-  float module_acc;
+  Point pos;      // m
+  Point vel;      // m/s
+  float acc;      // m/s^2
+  float steer;    // range : [-pi/2, pi/2]
+  Point direction;
 
 public:
-  Car(float x0, float y0);
+  Car(Point pos, Point dir);
   void move(float t, float k);
   void accelerate();
+  void decelerate();
   void rest();
   void turn_right();
   void turn_left();
   void go_straight();
   Point get_pos();
+  Point get_acc();
+  Point get_vel();
 };
 
 } // namespace KK
