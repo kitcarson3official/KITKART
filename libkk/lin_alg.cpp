@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-#include <math.h>
-#include <assert.h>
-#include <string>
->>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
 #include "lin_alg.h"
 #include <assert.h>
 #include <math.h>
@@ -11,7 +5,6 @@
 
 namespace KK {
 
-<<<<<<< HEAD
 /************************ SCALAR *************************/
 
 bool is_zero(float a) { return abs(a) < PRECISION; }
@@ -23,14 +16,6 @@ std::string Point::to_string() {
 }
 
 float module(const Point x) { return sqrt(x.x * x.x + x.y * x.y); }
-=======
-std::string Point::to_string()
-{
-  return "x:" + std::to_string(x) + " y:" + std::to_string(y);
-}
-
-float point_module(const Point x) { return sqrt(x.x * x.x + x.y * x.y); }
->>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
 
 Point normalize(const Point x) {
   float modulev = KK::module(x);
@@ -59,7 +44,9 @@ Point Point::operator+=(const Point &p) {
 }
 
 Point Point::operator-=(const Point &p) {
-  return {this->x - p.x, this->y - p.y};
+  this->x -= p.x;
+  this->y -= p.y;
+  return *this;
 }
 
 float operator*(const Point &p1, const Point &p2) {

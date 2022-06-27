@@ -2,8 +2,6 @@
 #include "car.h"
 #include <assert.h>
 #include <cmath>
-#include <iostream>
-using namespace std;
 
 // some precomputed stuff
 //
@@ -26,20 +24,16 @@ using namespace std;
 // itself. i think it should be around 0.01
 
 namespace KK {
-<<<<<<< HEAD
-
-Car::Car(Point pos, Point dir): pos(pos), direction(dir) {}
-=======
 Car::Car(Point pos, Point dir) {
   this->pos = pos;
-  this->direction_acc = normalize(dir);
+  this->direction = normalize(dir);
 
-  assert(point_module(direction_acc)!=0.f);
+  assert(module(direction)!=0.f);
 
   vel.x = 0.0f;
   vel.x = 0.0f;
   
-  module_acc = 0.0f;
+  acc = 0.0f;
 
   // some precomputed stuff
   //
@@ -61,13 +55,11 @@ Car::Car(Point pos, Point dir) {
   // k = 0.1 means that each time step a 10% of velocity it's subtracted from
   // itself. i think it should be around 0.01
 }
->>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
 
 void KK::Car::move(float t, float k) {
   Point acc_vector = acc * rotate(direction, steer);
   vel += (acc_vector - k * vel) * t;
   pos += vel * t;
-  std::cout << acc_vector << "; " << vel << "; " << k << "; " << t << endl;
   if (!is_zero(module(vel))){
     direction = normalize(vel);
   }
@@ -90,7 +82,6 @@ void KK::Car::decelerate() { acc = -100.f; }
 void KK::Car::rest() { acc = 0.f; }
 
 void KK::Car::turn_right() {
-<<<<<<< HEAD
   steer = -M_PIf/2;
 }
 
@@ -100,32 +91,12 @@ void KK::Car::turn_left() {
 
 void KK::Car::go_straight() {
   steer = 0.f;
-=======
-  KK::Point vel_norm = normalize(vel);
-  direction_acc.x = -vel_norm.y;
-  direction_acc.y = +vel_norm.x;
 }
 
-void KK::Car::turn_left() {
-  KK::Point vel_norm = normalize(vel);
-  direction_acc.x = +vel_norm.y;
-  direction_acc.y = -vel_norm.x;
-}
-
-void KK::Car::go_straight() {
-  KK::Point vel_norm = normalize(vel);
-  direction_acc.x += vel_norm.x;
-  direction_acc.y += vel_norm.y;
->>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
-}
 
 KK::Point KK::Car::get_pos() { return pos; }
 
-<<<<<<< HEAD
 KK::Point KK::Car::get_acc() { return direction * acc; }
-=======
-KK::Point KK::Car::get_acc() { return direction_acc * module_acc; }
->>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
 
 KK::Point KK::Car::get_vel() { return vel; }
 

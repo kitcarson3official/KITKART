@@ -20,11 +20,9 @@ struct Point {
   float x;
   float y;
 
-<<<<<<< HEAD
+
   Point operator+=(const Point &p);
   Point operator-=(const Point &p);
-=======
->>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
   std::string to_string();
 };
 
