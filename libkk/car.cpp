@@ -24,36 +24,15 @@
 // itself. i think it should be around 0.01
 
 namespace KK {
+
 Car::Car(Point pos, Point dir) {
   this->pos = pos;
   this->direction = normalize(dir);
 
   assert(module(direction)!=0.f);
 
-  vel.x = 0.0f;
-  vel.x = 0.0f;
-  
+  vel = {0.f, 0.f};
   acc = 0.0f;
-
-  // some precomputed stuff
-  //
-  // the velocity is expressed in meters/second but when represented
-  // on the screen it becomes pixels/second so that it becomes needed
-  // a conversion rate of pixels/meter
-  
-#define PIXELS_PER_METER 30.f
-  
-  // the max velocity is suck that 
-  //                  acc - k * vel_max = 0
-  // so
-  //                       vel/max = acc/k 
-
-#define MAX_VELOCITY 250.f // m/s
-                                    
-  // k means how much of velocity it's subtracted form itself
-  // greater the k, slower the velocity reaches its maximum value
-  // k = 0.1 means that each time step a 10% of velocity it's subtracted from
-  // itself. i think it should be around 0.01
 }
 
 void KK::Car::move(float t, float k) {
