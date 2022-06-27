@@ -5,8 +5,13 @@
 
 #include "kart.h"
 
+<<<<<<< HEAD
 #define WINDOW_W 800
 #define WINDOW_H 600
+=======
+#define WINDOW_W 1920
+#define WINDOW_H 1080
+>>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
 #define WINDOW_BIT 32
 #define WINDOW_TITLE "KITKART"
 
@@ -24,6 +29,7 @@ int main() {
 
   std::string info_str = "";
 
+<<<<<<< HEAD
   sf::Text info;
   info.setFont(font);
   info.setCharacterSize(20);
@@ -53,6 +59,56 @@ int main() {
           event.key.code == sf::Keyboard::Escape) {
         window.close();
       }
+=======
+    sf::Text info;
+    info.setFont(font);
+    info.setCharacterSize(20);
+    info.setStyle(sf::Text::Regular);
+
+    std::string control_str = ""; 
+
+    sf::Text control_info;
+    control_info.setFont(font);
+    control_info.setCharacterSize(20);
+    control_info.setStyle(sf::Text::Regular);
+    control_info.setPosition(500,0);
+
+    Kart *kart = new Kart( {250.f, 1000.f}, {0.f, -1.f}, 50.f, sf::Color(250, 250, 0));
+
+    //main loop
+    while (window.isOpen())
+    {
+        //events
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed) { window.close(); }
+
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+            {
+                window.close();
+            }
+
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F1)
+            {
+                kart = new Kart( {250.f, 1000.f}, {0.f, -1.f}, 50.f, sf::Color(250, 250, 0));
+            }
+
+			kart->input(event);
+            control_str = kart->control_to_string();
+            control_info.setString(control_str);
+        }
+
+        //update
+        sf::Time time = clock.getElapsedTime();
+        clock.restart();
+        
+        kart->update( time.asSeconds(), 1.f);
+
+        info_str = "pos " + kart->get_pos().to_string() +
+                    "\nacc " + kart->get_acc().to_string()+
+                    "\nvel " + kart->get_vel().to_string();
+>>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
 
       if (event.type == sf::Event::KeyPressed &&
           event.key.code == sf::Keyboard::F1) {
@@ -60,9 +116,23 @@ int main() {
                         sf::Color(250, 250, 0));
       }
 
+<<<<<<< HEAD
       kart->input(event);
       control_str = kart->control_to_string();
       control_info.setString(control_str);
+=======
+        control_info.setString(control_str);
+
+        //draw
+        window.clear(sf::Color(150, 150, 150));
+
+        window.draw(info);
+        window.draw(control_info);
+
+        kart->draw(window);
+
+        window.display();
+>>>>>>> 9f0b06c9b2a5438b7fd4d65c0dec8e39246c3641
     }
 
     // update
