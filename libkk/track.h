@@ -6,6 +6,7 @@
 
 namespace KK {
 struct Segment {
+  virtual ~Segment();
   virtual Point sector_from_world(Point w) = 0;
   virtual Point world_from_sector(Point s) = 0;
 };
@@ -23,6 +24,7 @@ public:
 class Curve : public Segment {
   Point x0, xf, center;
   float total_angle, current_angle, radius;
+
 public:
   Curve(Point x0, Point xf, Point center);
   virtual Point sector_from_world(Point w) override;
@@ -30,15 +32,17 @@ public:
 };
 
 class Track {
-  std::vector<Segment> segments;
+  std::vector<Segment *> segments;
+  unsigned int current_segment = 0;
 
 public:
-  /** TODO
-   * @brief return the k parameter of the track at coord x
-   * @param x coord
-   * @return k
-   */
-  float get_k(const KK::Point x);
+  Track();
+  Track(Segment *segment);
+  ~Track();
+
+  void add_segment(Segment *segment);
+  Segment& get_current_segment() const;
+  void next_segment();
 };
 } // namespace KK
 #endif

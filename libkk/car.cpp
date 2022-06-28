@@ -51,27 +51,27 @@ void KK::Car::move(float t, float k) {
  * direction
  *
  */
-void KK::Car::accelerate() { acc = 300.f; }
+void Car::accelerate() { acc = 300.f; }
 
 /**
  * @brief decelerating means having a negative acceleration in the moving
  * direction
  *
  */
-void KK::Car::decelerate() { acc = -100.f; }
+void Car::decelerate() { acc = -100.f; }
 
-void KK::Car::rest() { acc = 0.f; }
+void Car::rest() { acc = 0.f; }
 
-void KK::Car::turn_right() { steer = -M_PI_4; }
+void Car::turn_right() { steer = -M_PI_4; }
 
-void KK::Car::turn_left() { steer = M_PI_4; }
+void Car::turn_left() { steer = M_PI_4; }
 
-void KK::Car::go_straight() { steer = 0.f; }
+void Car::go_straight() { steer = 0.f; }
 
-KK::Point KK::Car::get_pos() { return pos; }
+Point Car::get_pos() { return pos; }
 
-KK::Point KK::Car::get_acc() { return direction * acc; }
+Point Car::get_acc() { return direction * acc; }
 
-KK::Point KK::Car::get_vel() { return vel; }
+Point Car::get_vel() { return vel; }
 
 } // namespace KK

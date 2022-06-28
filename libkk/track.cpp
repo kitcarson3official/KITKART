@@ -41,7 +41,23 @@ Point Curve::sector_from_world(Point w) {
 }
 
 Point Curve::world_from_sector(Point s) {
-  float angle = s.x/radius - atan(x0.y / x0.x);
+  float angle = s.x / radius - atan(x0.y / x0.x);
   return center + (radius + s.y) * Point({-cos(angle), sin(angle)});
 }
+
+Track::Track() {}
+
+Track::Track(Segment *segment) { segments.push_back(segment); }
+
+Track::~Track() {
+  for (Segment *s : segments)
+    delete s;
+}
+
+void Track::add_segment(Segment *segment) { segments.push_back(segment); }
+
+Segment& Track::get_current_segment() const{
+  return *(segments[current_segment]);
+}
+void Track::next_segment() { current_segment++; }
 } // namespace KK
