@@ -1,7 +1,9 @@
-#include <assert.h>
 #include "car.h"
+
+#define _USE_MATH_DEFINES
 #include <assert.h>
-#include <cmath>
+#include <math.h>
+
 
 // some precomputed stuff
 //
@@ -29,7 +31,7 @@ Car::Car(Point pos, Point dir) {
   this->pos = pos;
   this->direction = normalize(dir);
 
-  assert(module(direction)!=0.f);
+  assert(module(direction) != 0.f);
 
   vel = {0.f, 0.f};
   acc = 0.0f;
@@ -39,7 +41,7 @@ void KK::Car::move(float t, float k) {
   Point acc_vector = acc * rotate(direction, steer);
   vel += (acc_vector - k * vel) * t;
   pos += vel * t;
-  if (!is_zero(module(vel))){
+  if (!is_zero(module(vel))) {
     direction = normalize(vel);
   }
 }
@@ -60,18 +62,11 @@ void KK::Car::decelerate() { acc = -100.f; }
 
 void KK::Car::rest() { acc = 0.f; }
 
-void KK::Car::turn_right() {
-  steer = -M_PIf/4;
-}
+void KK::Car::turn_right() { steer = -M_PI_4; }
 
-void KK::Car::turn_left() {
-  steer = M_PIf/4;
-}
+void KK::Car::turn_left() { steer = M_PI_4; }
 
-void KK::Car::go_straight() {
-  steer = 0.f;
-}
-
+void KK::Car::go_straight() { steer = 0.f; }
 
 KK::Point KK::Car::get_pos() { return pos; }
 

@@ -69,11 +69,12 @@ int main() {
     sf::Time time = clock.getElapsedTime();
     clock.restart();
 
-    kart->update(time.asSeconds(), 1.f);
+    kart->update(time.asSeconds(), .9f);
 
     info_str = "pos " + kart->get_pos().to_string() + "\nacc " +
                kart->get_acc().to_string() + "\nvel " +
                kart->get_vel().to_string();
+    info.setString(info_str);
 
     if (event.type == sf::Event::KeyPressed &&
         event.key.code == sf::Keyboard::F1) {
@@ -96,6 +97,5 @@ int main() {
     window.display();
   }
 
-  
-return 0;
+  return 0;
 }
