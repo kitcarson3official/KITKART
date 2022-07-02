@@ -8,6 +8,7 @@ namespace KK {
 struct Segment {
   virtual Point sector_from_world(Point w) = 0;
   virtual Point world_from_sector(Point s) = 0;
+  virtual float getLength() const = 0;
 };
 
 class Line : public Segment {
@@ -16,21 +17,25 @@ class Line : public Segment {
 
 public:
   Line(Point x0, Point xf);
-  virtual Point sector_from_world(Point w) override;
-  virtual Point world_from_sector(Point s) override;
+  Point sector_from_world(Point w) override;
+  Point world_from_sector(Point s) override;
+  float getLength() const override;
 };
 
 class Curve : public Segment {
   Point x0, xf, center;
   float total_angle, current_angle, radius;
+
 public:
   Curve(Point x0, Point xf, Point center);
-  virtual Point sector_from_world(Point w) override;
-  virtual Point world_from_sector(Point s) override;
+  Point sector_from_world(Point w) override;
+  Point world_from_sector(Point s) override;
+  float getLength() const override;
 };
 
 class Track {
   std::vector<Segment> segments;
+  std::vector<Point> track_vertices(float max_curve_split = 1.f);
 
 public:
   /** TODO
@@ -39,6 +44,7 @@ public:
    * @return k
    */
   float get_k(const KK::Point x);
+  bool load_track(std::string filename);
 };
 } // namespace KK
 #endif

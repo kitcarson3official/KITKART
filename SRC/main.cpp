@@ -5,8 +5,8 @@
 
 #include "kart.h"
 
-#define WINDOW_W 1920
-#define WINDOW_H 1080
+#define WINDOW_W 720
+#define WINDOW_H 480
 #define WINDOW_BIT 32
 #define WINDOW_TITLE "KITKART"
 
@@ -38,7 +38,7 @@ int main() {
   control_info.setPosition(500, 0);
 
   Kart *kart =
-      new Kart({250.f, 1000.f}, {0.f, -1.f}, 50.f, sf::Color(250, 250, 0));
+      new Kart({250.f, 250.f}, {0.f, -1.f}, 50.f, sf::Color(250, 250, 0));
 
   // main loop
   while (window.isOpen()) {

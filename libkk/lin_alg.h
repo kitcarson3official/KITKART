@@ -1,6 +1,7 @@
 #ifndef KK_LIN_ALG
 #define KK_LIN_ALG
 
+#include "math.h"
 #include <ostream>
 
 namespace KK {

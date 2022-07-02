@@ -6,14 +6,14 @@
 namespace KK {
 class Car {
   // car state
-  Point pos;      // m
-  Point vel;      // m/s
-  float acc;      // m/s^2
-  float steer;    // range : [-pi/2, pi/2]
+  Point pos;   // m
+  Point vel;   // m/s
+  float acc;   // m/s^2
+  float steer; // range : [-pi/2, pi/2]
   Point direction;
 
 public:
-  Car(Point pos, Point dir);
+  Car(Point pos = {0.f, 0.f}, Point dir = {1.f, 0.f});
   void move(float t, float k);
   void accelerate();
   void decelerate();

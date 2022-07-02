@@ -4,7 +4,6 @@
 #include <assert.h>
 #include <math.h>
 
-
 // some precomputed stuff
 //
 // the velocity is expressed in meters/second but when represented
