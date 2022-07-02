@@ -6,6 +6,7 @@
 
 namespace KK {
 struct Segment {
+  virtual ~Segment();
   virtual Point sector_from_world(Point w) = 0;
   virtual Point world_from_sector(Point s) = 0;
   virtual float getLength() const = 0;
@@ -34,8 +35,8 @@ public:
 };
 
 class Track {
+  unsigned int current_segment = 0;
   std::vector<Segment> segments;
-  std::vector<Point> track_vertices(float max_curve_split = 1.f);
 
 public:
   /** TODO
@@ -45,6 +46,7 @@ public:
    */
   float get_k(const KK::Point x);
   bool load_track(std::string filename);
+  std::vector<Point> track_vertices(float max_curve_split = 1.f);
 };
 } // namespace KK
 #endif

@@ -64,5 +64,4 @@ std::vector<Point> Track::track_vertices(float max_curve_split) {
 }
 
 bool Track::load_track(std::string filename) { return true; }
-
 } // namespace KK
