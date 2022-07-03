@@ -6,7 +6,13 @@
 
 namespace KK {
 struct Segment {
-  virtual ~Segment();
+
+  enum SEGMENT_TYPE {
+    LINE = 1,
+    CURVE = 2,
+  };
+
+  // virtual ~Segment() = 0;
   virtual Point sector_from_world(Point w) = 0;
   virtual Point world_from_sector(Point s) = 0;
   virtual float getLength() const = 0;
@@ -14,13 +20,14 @@ struct Segment {
 
 class Line : public Segment {
   Point x0, xf;
-  float m, angle;
+  float angle;
 
 public:
   Line(Point x0, Point xf);
-  Point sector_from_world(Point w) override;
-  Point world_from_sector(Point s) override;
-  float getLength() const override;
+  // virtual ~Line();
+  virtual Point sector_from_world(Point w) override;
+  virtual Point world_from_sector(Point s) override;
+  virtual float getLength() const override;
 };
 
 class Curve : public Segment {
@@ -29,14 +36,15 @@ class Curve : public Segment {
 
 public:
   Curve(Point x0, Point xf, Point center);
-  Point sector_from_world(Point w) override;
-  Point world_from_sector(Point s) override;
-  float getLength() const override;
+  // virtual ~Curve();
+  virtual Point sector_from_world(Point w) override;
+  virtual Point world_from_sector(Point s) override;
+  virtual float getLength() const override;
 };
 
 class Track {
   unsigned int current_segment = 0;
-  std::vector<Segment> segments;
+  std::vector<Segment*> segments;
 
 public:
   /** TODO
@@ -44,6 +52,7 @@ public:
    * @param x coord
    * @return k
    */
+  ~Track();
   float get_k(const KK::Point x);
   bool load_track(std::string filename);
   std::vector<Point> track_vertices(float max_curve_split = 1.f);

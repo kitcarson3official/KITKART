@@ -1,5 +1,5 @@
 sfml/
 build/
 .cache/
-CMakeLists.txt
+.venv/
 compile_commands.json

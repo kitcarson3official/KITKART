@@ -26,7 +26,7 @@ function build
     New-Item -Path "build" -ItemType Directory
   }
   Push-Location "build"
-  cmake -G"Ninja" -DCMAKE_EXPORT_COMPILE_COMMANDS=True ..
+  cmake -G"Ninja" -DCMAKE_EXPORT_COMPILE_COMMANDS=True -DINCLUDE_DIR="D:/usr/include" -DLIBS_DIR="D:/usr/lib" ..
   cmake --build .
   if (Test-Path -Path "compile_commands.json")
   {
